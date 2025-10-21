@@ -75,6 +75,36 @@ docker stop $(docker ps -q)
 docker build -t nome-da-imagem .
 ```
 
+15. Como fazer login no Docker via cli
+```shell
+docker login -u nome-de-usuario
+```
+
+16. Como fazer logout
+```shell
+docker logout
+```
+
+17. Preparando imagem para enviar para o docker hub
+```shell
+docker tag nome-da-imagem nome-de-usuario/nome-da-imagem
+```
+
+18. Como enviar a imagem para o docker hub
+```shell
+docker push nome-de-usuario/nome-da-imagem
+```
+
+19. Como remover todos os containers
+```shell
+docker container rm $(docker ps -aq)
+```
+
+20. Como remover todas as imagens locais
+```shell
+docker rmi $(docker images -aq) --force
+```
+
 ### Dockerfile
 
 1. FROM: De qual repositório do Dockerhub o docker vai usar para fazer o download para o local, após os : usamos a tag, as tags são as versões, por exemplo, no php é 8.2-cli, do node é 25
