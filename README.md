@@ -105,10 +105,23 @@ docker container rm $(docker ps -aq)
 docker rmi $(docker images -aq) --force
 ```
 
-21. Como persistir dados em uma pasta no host local
+21. Como persistir dados em uma pasta no host local (Bind mount) ou volume, caso passarmos um nome de volume que não exista no host ele vai criar um novo. Podemos também persistir dados em arquivo temporário por questões de segurança, quando não queremos que um arquivo fique na camada de R/W podemos usar o tmpfs para persistir esses dados temporário, quando o container for derrubado ele vai sumir
 ```shell
 docker run -it -v /caminho/da/pasta/host:/pasta-do-docker ubuntu bash
 docker run -it --mount type=bind,source=/caminho/da/pasta/host,target=/pasta-do-container ubuntu bash
+docker run -it -v nome-do-volume:/pasta-do-docker ubuntu bash
+docker run -it --mount source=meu-volume,target=/app ubuntu bash
+docker run -it --mount type=tmpfs,destination=/app ubuntu bash
+```
+
+22. Como listar os volumes do docker, os volumes ficam dentro da pasta do docker
+```shell
+docker volume ls
+```
+
+23. Como criar um novo volume
+```shell
+docker volume create nome-do-volume
 ```
 
 ### Dockerfile
