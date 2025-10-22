@@ -105,6 +105,12 @@ docker container rm $(docker ps -aq)
 docker rmi $(docker images -aq) --force
 ```
 
+21. Como persistir dados em uma pasta no host local
+```shell
+docker run -it -v /caminho/da/pasta/host:/pasta-do-docker ubuntu bash
+docker run -it --mount type=bind,source=/caminho/da/pasta/host,target=/pasta-do-container ubuntu bash
+```
+
 ### Dockerfile
 
 1. FROM: De qual repositório do Dockerhub o docker vai usar para fazer o download para o local, após os : usamos a tag, as tags são as versões, por exemplo, no php é 8.2-cli, do node é 25
@@ -123,6 +129,7 @@ docker rmi $(docker images -aq) --force
 4. -P criar um mapeamento da porta automático
 5. -p permite criar o mapeamento de porta específico onde o que vem antes dos : é a porta que você vai usar na url e depois a porta do container *8080:80*
 6. -t 0 força a execução sem esperar os 10 segundos
+7. -s adiciona uma coluna extra de tamanho
 
 ### Importante
 
