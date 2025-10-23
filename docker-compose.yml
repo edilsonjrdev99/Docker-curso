@@ -1,0 +1,31 @@
+name: exemplo
+
+services:
+  postgresdb:
+    image: postgres:16
+    container_name: app_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: app
+    networks:
+      - compose-bridge
+    ports:
+      - "5432:5432"
+
+  php:
+    image: php:8.2-cli
+    container_name: app_php
+    depends_on:
+      - postgresdb
+    networks:
+      - compose-bridge
+    ports:
+      - "8000:8000"
+    command: php -S 0.0.0.0:8000 -t /var/www/html
+    volumes:
+      - .:/var/www/html
+
+networks:
+  compose-bridge:
+    driver: bridge

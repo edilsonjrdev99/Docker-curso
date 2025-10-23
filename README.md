@@ -123,6 +123,36 @@ docker volume ls
 ```shell
 docker volume create nome-do-volume
 ```
+24. Como ver as redes do docker
+```shell
+docker network ls
+```
+
+25. Como criar uma nova rede bridge do docker
+```shell
+docker network create --driver bridge nome-da-rede
+```
+
+26. Como criar um container especificando o seu nome e rede do docker
+```shell
+docker run -it --name nome-do-container --network nome-da-rede ubuntu bash
+```
+
+27. Como rodar um container em uma rede do host ou none, none significa que o container não terá driver de rede
+```shell
+docker run -d --network host nome-da-imagem
+docker run -d --network none nome-da-imagem
+```
+
+28. Como roda rum container a partir de arquivo docker-compose.yml
+```shell
+docker compose up -d
+```
+
+29. Como parar um container em execução
+```shell
+docker compose down
+```
 
 ### Dockerfile
 
@@ -143,6 +173,7 @@ docker volume create nome-do-volume
 5. -p permite criar o mapeamento de porta específico onde o que vem antes dos : é a porta que você vai usar na url e depois a porta do container *8080:80*
 6. -t 0 força a execução sem esperar os 10 segundos
 7. -s adiciona uma coluna extra de tamanho
+8. --name definir o nome do container
 
 ### Importante
 
